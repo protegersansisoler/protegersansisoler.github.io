@@ -5,7 +5,7 @@
   <title>Protéger sans isoler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Protéger sans isoler est un programme éducatif qui aide à comprendre les situations entourant les mesures de protection, sans prescrire d’actions ni orienter les décisions.">
-  <link rel="stylesheet" href="./styles.css?v=4">
+  <link rel="stylesheet" href="./styles.css?v=5">
 </head>
 
 <body>
@@ -32,11 +32,14 @@
     </p>
 
     <div class="actions">
-      <a class="btn btn-primary" href="comprendre.html">
-        Comprendre les situations
+      <!-- CTA principal unique -->
+      <a class="btn btn-primary" href="se-situer.html">
+        Me situer et commencer
       </a>
-      <a class="btn" href="roles.html">
-        Lire selon mon rôle
+
+      <!-- Lien secondaire discret (pas un 2e bouton) -->
+      <a class="link subtle" href="comprendre.html">
+        Comprendre les situations
       </a>
     </div>
   </section>
@@ -55,33 +58,38 @@
       Ces difficultés ne viennent pas toujours de la mesure elle-même,
       mais de la manière dont elle est comprise, expliquée et vécue.
     </p>
+
+    <!-- Petite orientation (accueil = orienter) -->
+    <p class="muted">
+      Si tu ne sais pas par où commencer, la page <strong>Se situer</strong> aide à repérer ton point de départ.
+    </p>
   </section>
 
   <!-- CE QUE LE SITE PROPOSE -->
   <section class="grid" aria-label="Ce que propose le site">
 
     <div class="card">
+      <h3>Se situer</h3>
+      <p>
+        Repérer rapidement ton point de départ : personne concernée, proche désigné,
+        proche non désigné, ou professionnel. Une première orientation, sans injonction.
+      </p>
+      <a class="link" href="se-situer.html">Explorer</a>
+    </div>
+
+    <div class="card">
       <h3>Comprendre les situations</h3>
       <p>
         Mettre des mots sur ce qui se joue autour des mesures de protection :
-        les rôles, les relations, les tensions possibles et les périodes de transition.
+        rôles, relations, tensions possibles et périodes de transition.
       </p>
       <a class="link" href="comprendre.html">Explorer</a>
     </div>
 
     <div class="card">
-      <h3>Lire selon les rôles</h3>
+      <h3>Boîte à outils</h3>
       <p>
-        Comprendre ces situations à partir de différentes positions :
-        personne concernée, proche désigné ou proche non désigné.
-      </p>
-      <a class="link" href="roles.html">Explorer</a>
-    </div>
-
-    <div class="card">
-      <h3>Outils et ressources</h3>
-      <p>
-        Accéder aux documents disponibles et à des ressources utiles,
+        Accéder aux fiches, aux parcours et aux documents utiles,
         sans surpromesse ni parcours imposé.
       </p>
       <a class="link" href="outils.html">Explorer</a>
@@ -109,8 +117,6 @@
 
 <footer id="site-footer"></footer>
 
-<script src="./include.js?v=4"></script>
+<script src="./include.js?v=5"></script>
 </body>
 </html>
-
-
