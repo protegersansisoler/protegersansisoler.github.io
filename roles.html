@@ -5,7 +5,7 @@
   <title>Selon votre rôle | Protéger sans isoler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Choisir une lecture selon votre rôle : personne concernée, proche désigné, proche non désigné. Repères éducatifs non prescriptifs.">
-  <link rel="stylesheet" href="./styles.css?v=4">
+  <link rel="stylesheet" href="./styles.css?v=5">
 </head>
 
 <body>
@@ -24,6 +24,11 @@
       Choisissez la lecture qui vous correspond. Chaque page propose des repères éducatifs,
       sans orienter des décisions.
     </p>
+
+    <p class="muted">
+      Repère simple : ici, “rôle” parle surtout de votre place dans la situation.
+      Le statut légal (désigné ou non) est une dimension parmi d’autres.
+    </p>
   </section>
 
   <!-- HUB : 3 cartes -->
@@ -34,6 +39,12 @@
       Ces trois pages sont indépendantes. Si vous hésitez, commencez par celle qui vous semble la plus proche.
       Vous pourrez ensuite comparer avec une autre lecture.
     </p>
+
+    <ul class="list">
+      <li><strong>Personne concernée</strong> : quand la mesure touche le quotidien, les repères et le sentiment de contrôle.</li>
+      <li><strong>Proche désigné</strong> : quand une responsabilité formelle s’ajoute aux liens personnels.</li>
+      <li><strong>Proche non désigné</strong> : quand on reste concerné, parfois en marge, avec des informations partielles.</li>
+    </ul>
 
     <div class="grid" aria-label="Choix de rôle">
       <div class="card">
@@ -54,6 +65,11 @@
         <a class="link" href="role-proche-non-designe.html" aria-label="Ouvrir la page Proche non désigné">Ouvrir</a>
       </div>
     </div>
+
+    <p class="small">
+      Si votre besoin est plutôt de comprendre les tensions relationnelles et les transitions, revenir à
+      <a href="comprendre.html">Comprendre les situations</a>.
+    </p>
   </section>
 
   <!-- Avertissement court -->
@@ -72,9 +88,10 @@
 <!-- Compatibilité : anciens liens roles.html#... -->
 <script>
   (function () {
-    var raw = (location.hash || "").replace("#", "");
+    var raw = (location.hash || "").replace("#", "").trim();
     if (!raw) return;
 
+    // Normalisation très tolérante
     var h = raw.toLowerCase()
       .replace(/_/g, "-")
       .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -82,18 +99,24 @@
 
     var map = {
       "personne": "role-personne.html",
+      "personne-concernee": "role-personne.html",
+
       "proche-designe": "role-proche-designe.html",
-      "proche-non-designe": "role-proche-non-designe.html",
       "prochedesigne": "role-proche-designe.html",
-      "prochenondesigne": "role-proche-non-designe.html"
+
+      "proche-non-designe": "role-proche-non-designe.html",
+      "prochenondesigne": "role-proche-non-designe.html",
+      "proche-non-designé": "role-proche-non-designe.html"
     };
 
-    if (map[h]) location.replace(map[h]);
+    if (map[h]) {
+      location.replace(map[h]);
+    }
   })();
 </script>
 
 <!-- Même fin que les autres pages -->
-<script src="./include.js?v=4"></script>
+<script src="./include.js?v=5"></script>
 
 </body>
 </html>
