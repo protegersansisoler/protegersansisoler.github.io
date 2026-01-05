@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Selon votre rôle | Protéger sans isoler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choisir une lecture selon votre rôle : personne concernée, proche désigné, proche non désigné. Repères éducatifs non prescriptifs.">
+  <link rel="stylesheet" href="./styles.css?v=4">
+</head>
+
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header id="site-header"></header>
+
+<main id="contenu" class="container">
+
+  <!-- HERO ultra simple : pas de boutons -->
+  <section class="hero">
+    <h1>Selon votre rôle</h1>
+
+    <p class="lead">
+      Une même situation peut être vécue très différemment selon la place occupée.
+      Choisissez la lecture qui vous correspond. Chaque page propose des repères éducatifs,
+      sans orienter des décisions.
+    </p>
+  </section>
+
+  <!-- HUB : 3 cartes -->
+  <section class="content" aria-labelledby="titre-choisir-role">
+    <h2 id="titre-choisir-role">Choisir une lecture</h2>
+
+    <p class="small">
+      Ces trois pages sont indépendantes. Si vous hésitez, commencez par celle qui vous semble la plus proche.
+      Vous pourrez ensuite comparer avec une autre lecture.
+    </p>
+
+    <div class="grid" aria-label="Choix de rôle">
+      <div class="card">
+        <h3>Personne concernée</h3>
+        <p>Repères quand la mesure touche les repères, le quotidien et le sentiment de contrôle.</p>
+        <a class="link" href="role-personne.html" aria-label="Ouvrir la page Personne concernée">Ouvrir</a>
+      </div>
+
+      <div class="card">
+        <h3>Proche désigné</h3>
+        <p>Repères quand une responsabilité formelle s’ajoute aux liens personnels.</p>
+        <a class="link" href="role-proche-designe.html" aria-label="Ouvrir la page Proche désigné">Ouvrir</a>
+      </div>
+
+      <div class="card">
+        <h3>Proche non désigné</h3>
+        <p>Repères quand on reste concerné, parfois en marge, avec des perceptions différentes.</p>
+        <a class="link" href="role-proche-non-designe.html" aria-label="Ouvrir la page Proche non désigné">Ouvrir</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avertissement court -->
+  <section class="notice" aria-labelledby="titre-important">
+    <h2 id="titre-important">Important</h2>
+    <p>
+      Ces pages sont proposées à des fins éducatives. Elles ne remplacent pas un accompagnement juridique,
+      psychosocial ou clinique et ne proposent pas de conseils personnalisés.
+    </p>
+  </section>
+
+</main>
+
+<footer id="site-footer"></footer>
+
+<!-- Compatibilité : anciens liens roles.html#... -->
+<script>
+  (function () {
+    var raw = (location.hash || "").replace("#", "");
+    if (!raw) return;
+
+    var h = raw.toLowerCase()
+      .replace(/_/g, "-")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9-]/g, "");
+
+    var map = {
+      "personne": "role-personne.html",
+      "proche-designe": "role-proche-designe.html",
+      "proche-non-designe": "role-proche-non-designe.html",
+      "prochedesigne": "role-proche-designe.html",
+      "prochenondesigne": "role-proche-non-designe.html"
+    };
+
+    if (map[h]) location.replace(map[h]);
+  })();
+</script>
+
+<!-- Même fin que les autres pages -->
+<script src="./include.js?v=4"></script>
+
+</body>
+</html>
