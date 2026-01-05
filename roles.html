@@ -26,8 +26,19 @@
     </p>
 
     <p class="muted">
-      Repère simple : ici, “rôle” parle surtout de votre place dans la situation.
-      Le statut légal (désigné ou non) est une dimension parmi d’autres.
+      Repère : ici, “rôle” parle de votre place dans la situation. Le statut légal peut en faire partie,
+      mais il ne résume pas tout.
+    </p>
+  </section>
+
+  <!-- CLARIFICATION : "désigné" -->
+  <section class="content" aria-label="Clarification des rôles">
+    <h2>Clarifier les trois lectures</h2>
+
+    <p class="small">
+      Pour éviter un malentendu fréquent : “désigné” peut venir d’un cadre légal (par exemple un mandat de protection)
+      ou d’une décision judiciaire (par exemple une tutelle). Dans les deux cas, la désignation encadre certaines
+      responsabilités, sans donner un pouvoir total sur la personne ou sur ses liens.
     </p>
   </section>
 
@@ -40,34 +51,36 @@
       Vous pourrez ensuite comparer avec une autre lecture.
     </p>
 
-    <ul class="list">
-      <li><strong>Personne concernée</strong> : quand la mesure touche le quotidien, les repères et le sentiment de contrôle.</li>
-      <li><strong>Proche désigné</strong> : quand une responsabilité formelle s’ajoute aux liens personnels.</li>
-      <li><strong>Proche non désigné</strong> : quand on reste concerné, parfois en marge, avec des informations partielles.</li>
-    </ul>
-
     <div class="grid" aria-label="Choix de rôle">
       <div class="card">
         <h3>Personne concernée</h3>
-        <p>Repères quand la mesure touche les repères, le quotidien et le sentiment de contrôle.</p>
+        <p class="small">
+          Quand la mesure vous touche directement : quotidien, repères, sentiment de contrôle, liens importants.
+        </p>
         <a class="link" href="role-personne.html" aria-label="Ouvrir la page Personne concernée">Ouvrir</a>
       </div>
 
       <div class="card">
         <h3>Proche désigné</h3>
-        <p>Repères quand une responsabilité formelle s’ajoute aux liens personnels.</p>
+        <p class="small">
+          Quand un rôle formel vous est confié (mandat, tutelle ou autre cadre) et que vous devez agir avec rigueur,
+          sans isoler.
+        </p>
         <a class="link" href="role-proche-designe.html" aria-label="Ouvrir la page Proche désigné">Ouvrir</a>
       </div>
 
       <div class="card">
         <h3>Proche non désigné</h3>
-        <p>Repères quand on reste concerné, parfois en marge, avec des perceptions différentes.</p>
+        <p class="small">
+          Quand vous restez concerné et attaché, mais sans rôle formel, parfois avec des informations partielles
+          ou un sentiment de mise à l’écart.
+        </p>
         <a class="link" href="role-proche-non-designe.html" aria-label="Ouvrir la page Proche non désigné">Ouvrir</a>
       </div>
     </div>
 
     <p class="small">
-      Si votre besoin est plutôt de comprendre les tensions relationnelles et les transitions, revenir à
+      Si votre besoin est plutôt de comprendre les tensions relationnelles et les transitions, voir
       <a href="comprendre.html">Comprendre les situations</a>.
     </p>
   </section>
@@ -91,7 +104,6 @@
     var raw = (location.hash || "").replace("#", "").trim();
     if (!raw) return;
 
-    // Normalisation très tolérante
     var h = raw.toLowerCase()
       .replace(/_/g, "-")
       .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -105,18 +117,13 @@
       "prochedesigne": "role-proche-designe.html",
 
       "proche-non-designe": "role-proche-non-designe.html",
-      "prochenondesigne": "role-proche-non-designe.html",
-      "proche-non-designé": "role-proche-non-designe.html"
+      "prochenondesigne": "role-proche-non-designe.html"
     };
 
-    if (map[h]) {
-      location.replace(map[h]);
-    }
+    if (map[h]) location.replace(map[h]);
   })();
 </script>
 
-<!-- Même fin que les autres pages -->
 <script src="./include.js?v=5"></script>
-
 </body>
 </html>
