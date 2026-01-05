@@ -30,13 +30,35 @@
     </p>
   </section>
 
-  <section class="content" aria-label="Clarification des trois lectures">
-    <h2>Clarifier les trois lectures</h2>
+  <!-- Clarifier en 3 phrases simples -->
+  <section class="content" aria-label="Définitions simples des trois places">
+    <h2>Comprendre les trois places (simplement)</h2>
+
+    <ul class="list">
+      <li><strong>Personne concernée</strong> : la mesure touche votre quotidien, vos décisions et vos liens.</li>
+      <li><strong>Proche désigné</strong> : un rôle formel vous est confié (mandat en vigueur, tutelle ou autre cadre), avec des responsabilités précises.</li>
+      <li><strong>Proche non désigné</strong> : vous restez important dans la vie de la personne, mais sans rôle formel, parfois avec peu d’informations.</li>
+    </ul>
 
     <p class="small">
-      “Désigné” peut venir d’un cadre légal (par exemple un mandat de protection) ou d’une décision judiciaire
-      (par exemple une tutelle). Dans les deux cas, la désignation encadre certaines responsabilités,
+      “Désigné” peut venir d’un document préparé à l’avance (ex. mandat de protection, lorsqu’il est en vigueur)
+      ou d’une décision judiciaire (ex. tutelle). Dans les deux cas, la désignation encadre certaines responsabilités,
       sans donner un pouvoir total sur la personne ou sur ses liens.
+    </p>
+  </section>
+
+  <!-- Micro-FAQ utile (court, pas lourd) -->
+  <section class="content" aria-label="Questions fréquentes sur les rôles">
+    <h2>Questions fréquentes</h2>
+
+    <p class="small">
+      <strong>Est-ce que “désigné” veut toujours dire “par le tribunal”?</strong><br>
+      Non. Dans un mandat de protection, la personne peut désigner à l’avance qui jouera un rôle, mais ce rôle s’exerce seulement quand le mandat est en vigueur (ex. après homologation). En tutelle, la désignation vient du tribunal.
+    </p>
+
+    <p class="small">
+      <strong>Est-ce que “désigné” veut dire “décider qui peut voir la personne”?</strong><br>
+      Non. Un rôle formel encadre certaines décisions et responsabilités, mais les liens significatifs font partie de l’équilibre à protéger.
     </p>
   </section>
 
@@ -60,7 +82,7 @@
       <div class="card">
         <h3>Proche désigné</h3>
         <p class="small">
-          Quand un rôle formel vous est confié (mandat, tutelle ou autre cadre) et que vous devez agir avec rigueur,
+          Quand un rôle formel vous est confié (mandat en vigueur, tutelle ou autre cadre) et que vous devez agir avec rigueur,
           sans isoler.
         </p>
         <a class="link" href="role-proche-designe.html" aria-label="Ouvrir la page Proche désigné">Ouvrir</a>
@@ -94,6 +116,7 @@
 
 <footer id="site-footer"></footer>
 
+<!-- Compatibilité : anciens liens roles.html#... -->
 <script>
   (function () {
     var raw = (location.hash || "").replace("#", "").trim();
@@ -101,6 +124,7 @@
 
     var h = raw.toLowerCase()
       .replace(/_/g, "-")
+      .replace(/\s+/g, "-")
       .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9-]/g, "");
 
@@ -108,9 +132,11 @@
       "personne": "role-personne.html",
       "personne-concernee": "role-personne.html",
 
+      "proche": "role-proche-designe.html",
       "proche-designe": "role-proche-designe.html",
       "prochedesigne": "role-proche-designe.html",
 
+      "non-designe": "role-proche-non-designe.html",
       "proche-non-designe": "role-proche-non-designe.html",
       "prochenondesigne": "role-proche-non-designe.html"
     };
