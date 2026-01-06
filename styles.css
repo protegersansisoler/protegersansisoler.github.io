@@ -430,6 +430,90 @@ footer p{
   border:0;
 }
 
+/* =========================
+   NAV ROW (alignement horizontal)
+   ========================= */
+
+.nav.nav-row{
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  padding:14px 0;
+}
+
+/* En mode "row", on enlève le séparateur décoratif */
+.nav.nav-row::after{
+  display:none;
+}
+
+/* Le menu doit pouvoir revenir à la ligne sans casser */
+.nav.nav-row .menu{
+  justify-content:flex-end;
+}
+
+/* Mobile: on repasse en colonne proprement */
+@media (max-width:900px){
+  .nav.nav-row{
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    padding:16px 0 14px;
+  }
+  .nav.nav-row .menu{
+    justify-content:center;
+  }
+}
+
+/* =========================
+   BRAND texte seulement (sans image, sans encadré)
+   ========================= */
+
+/* Si tu utilises class="brand brand-text-only" */
+.brand.brand-text-only{
+  padding:0;
+  border:none;
+  background:transparent;
+  box-shadow:none;
+  border-radius:0;
+  gap:0;
+}
+
+/* On garde une "présence" typographique sobre */
+.brand-title{
+  font-size:1.15rem;
+  font-weight:850;
+  letter-spacing:-0.02em;
+  line-height:1.05;
+  white-space:nowrap;
+}
+
+/* Accent plus fort, mais sans crier */
+.brand-accent{
+  color:var(--accent2);
+  font-weight:900;
+}
+
+/* Sur petits écrans, on permet le retour à la ligne si nécessaire */
+@media (max-width:520px){
+  .brand-title{ white-space:normal; text-align:center; }
+}
+
+/* =========================
+   Correction: éviter que .brand-text span écrase l’accent
+   ========================= */
+
+/* Tu avais: .brand-tagline, .brand-text span { ... }
+   -> ça stylait AUSSI .brand-accent si jamais il est dans .brand-text.
+   On corrige en ciblant uniquement la tagline. */
+.brand-text span.brand-tagline{
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:.90rem;
+  letter-spacing:.02em;
+}
+
 
 
 
