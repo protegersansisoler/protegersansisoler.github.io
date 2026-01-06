@@ -414,44 +414,6 @@ footer p{
   .menu a{ padding:10px 12px; }
 }
 
-/* HEADER layout: logo à gauche, menu à droite */
-.nav.nav-row{
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 14px 0 12px;
-}
-
-/* Le séparateur après le header : moins "grand", plus discret */
-.nav.nav-row::after{
-  margin-top: 10px;
-}
-
-/* Brand: enlève l'effet "badge centré" trop présent */
-.brand{
-  padding: 6px 10px;
-  border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(16,42,67,.05);
-}
-
-/* Menu: aligne à droite, plus compact */
-.menu{
-  justify-content: flex-end;
-  gap: 8px;
-}
-
-/* Mobile: on repasse en colonne pour éviter l’écrasement */
-@media (max-width: 860px){
-  .nav.nav-row{
-    flex-direction: column;
-    align-items: center;
-  }
-  .menu{
-    justify-content: center;
-  }
-}
-
 /* Mouvement réduit */
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; }
@@ -467,6 +429,7 @@ footer p{
   white-space:nowrap;
   border:0;
 }
+
 
 
 
