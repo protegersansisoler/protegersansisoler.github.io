@@ -514,3 +514,7 @@ header{
 footer{
   background: linear-gradient(180deg, rgba(244,241,234,.9), rgba(239,233,221,.9));
 }
+
+body{
+  outline: 6px solid red;
+}
