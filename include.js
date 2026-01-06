@@ -11,14 +11,9 @@ async function inject(id, file) {
 
   try {
     const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) {
-      console.warn(`[include.js] Échec chargement ${url} (${res.status})`);
-      return;
-    }
+    if (!res.ok) return;
     el.innerHTML = await res.text();
-  } catch (e) {
-    console.warn(`[include.js] Erreur fetch ${url}`, e);
-  }
+  } catch (e) {}
 }
 
 function normalizeHref(href) {
@@ -30,7 +25,6 @@ function normalizeHref(href) {
 
 function markActiveLink() {
   const current = normalizeHref(location.pathname.split("/").pop() || "index.html");
-
   document.querySelectorAll(".menu a").forEach(a => {
     const href = normalizeHref(a.getAttribute("href"));
     if (href === current) a.setAttribute("aria-current", "page");
@@ -58,26 +52,28 @@ function bustLocalAssets() {
     link.setAttribute("href", `${base}?v=${encodeURIComponent(SITE_VERSION)}${hash}`);
   });
 
-  // JS (optionnel, mais pratique si tu modifies souvent tes scripts)
+  // JS
   document.querySelectorAll("script[src]").forEach(s => {
     const src = s.getAttribute("src");
     if (!isLocal(src)) return;
 
-    const base = src.split("#")[0].split("?")[0];
+    // Ne pas se recharger soi-même (évite des effets bizarres)
+    const base0 = src.split("#")[0].split("?")[0];
+    if (base0.endsWith("/include.js") || base0.endsWith("include.js")) return;
+
     const hash = src.includes("#") ? "#" + src.split("#")[1] : "";
-    s.setAttribute("src", `${base}?v=${encodeURIComponent(SITE_VERSION)}${hash}`);
+    s.setAttribute("src", `${base0}?v=${encodeURIComponent(SITE_VERSION)}${hash}`);
   });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // 1) Force refresh des assets locaux
+  // 1) Force refresh des assets (CSS/JS)
   bustLocalAssets();
 
-  // 2) Injection des includes (chemins absolus = plus robuste)
+  // 2) Injection header/footer
   await inject("site-header", "/header.html");
   await inject("site-footer", "/footer.html");
 
   // 3) Actif dans le menu
   markActiveLink();
 });
-
