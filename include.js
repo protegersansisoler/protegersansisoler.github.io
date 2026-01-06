@@ -1,6 +1,6 @@
 // include.js
-// Incrémente SITE_VERSION quand tu modifies le header/footer/styles (ex: "5" -> "6")
-const SITE_VERSION = "5";
+// Change seulement SITE_VERSION quand tu veux forcer un refresh global (CSS/JS/includes)
+const SITE_VERSION = "6";
 
 async function inject(id, file) {
   const el = document.getElementById(id);
@@ -38,11 +38,46 @@ function markActiveLink() {
   });
 }
 
+// Ajoute/replace ?v=... sur tes assets locaux (CSS/JS), sans toucher aux liens externes
+function bustLocalAssets() {
+  const isLocal = (url) =>
+    url &&
+    !url.startsWith("http://") &&
+    !url.startsWith("https://") &&
+    !url.startsWith("//") &&
+    !url.startsWith("data:") &&
+    !url.startsWith("mailto:");
+
+  // CSS
+  document.querySelectorAll('link[rel="stylesheet"][href]').forEach(link => {
+    const href = link.getAttribute("href");
+    if (!isLocal(href)) return;
+
+    const base = href.split("#")[0].split("?")[0];
+    const hash = href.includes("#") ? "#" + href.split("#")[1] : "";
+    link.setAttribute("href", `${base}?v=${encodeURIComponent(SITE_VERSION)}${hash}`);
+  });
+
+  // JS (optionnel, mais pratique si tu modifies souvent tes scripts)
+  document.querySelectorAll("script[src]").forEach(s => {
+    const src = s.getAttribute("src");
+    if (!isLocal(src)) return;
+
+    const base = src.split("#")[0].split("?")[0];
+    const hash = src.includes("#") ? "#" + src.split("#")[1] : "";
+    s.setAttribute("src", `${base}?v=${encodeURIComponent(SITE_VERSION)}${hash}`);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
-  // Chemins absolus = plus fiable sur GitHub Pages + domaine perso
+  // 1) Force refresh des assets locaux
+  bustLocalAssets();
+
+  // 2) Injection des includes (chemins absolus = plus robuste)
   await inject("site-header", "/header.html");
   await inject("site-footer", "/footer.html");
 
-  // Relance après injection (le menu est dans header)
+  // 3) Actif dans le menu
   markActiveLink();
 });
+
