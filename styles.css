@@ -514,6 +514,61 @@ footer p{
   letter-spacing:.02em;
 }
 
+/* HEADER - version propre : titre à gauche, menu à droite */
+.nav.nav-row{
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:14px 0;
+}
+
+/* On enlève le séparateur décoratif pour cette variante */
+.nav.nav-row::after{ display:none; }
+
+/* Brand texte seulement : pas de badge, juste un vrai titre */
+.brand.brand-text-only{
+  padding:0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  border-radius:0;
+}
+
+.brand-title{
+  display:inline-block;
+  font-size:1.45rem;        /* plus grand */
+  font-weight:850;
+  letter-spacing:-0.02em;
+  line-height:1.05;
+  white-space:nowrap;
+  color:var(--text);
+}
+
+.brand-accent{
+  color:var(--accent2);
+  font-weight:900;
+  border-bottom:2px solid currentColor;  /* accent net mais sobre */
+  padding-bottom:2px;
+}
+
+/* Menu : on garde une belle ligne, sans écraser */
+.nav.nav-row .menu{
+  justify-content:flex-end;
+}
+
+/* Responsive : on repasse en colonne, centré */
+@media (max-width:980px){
+  .nav.nav-row{
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    padding:16px 0 14px;
+  }
+  .nav.nav-row .menu{ justify-content:center; }
+  .brand-title{ font-size:1.28rem; white-space:normal; text-align:center; }
+}
+
 
 
 
