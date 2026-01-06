@@ -515,6 +515,47 @@ footer{
   background: linear-gradient(180deg, rgba(244,241,234,.9), rgba(239,233,221,.9));
 }
 
-body{
-  outline: 6px solid red;
+/* ===== TEST VISUEL FORT – à supprimer après test ===== */
+
+/* A) Mise en page plus compacte et lisible */
+:root{
+  --max: 960px;          /* page plus étroite = lecture plus confortable */
 }
+
+/* B) Hiérarchie visuelle plus nette */
+.hero{
+  padding: 36px;
+  background:
+    radial-gradient(900px 360px at 8% 0%, rgba(255,255,255,1), rgba(255,255,255,0) 60%),
+    linear-gradient(180deg,#ffffff,#f7f4ee);
+}
+
+.hero h1{
+  font-size: 2.3rem;
+}
+
+.hero .lead{
+  font-size: 1.18rem;
+}
+
+/* C) Cartes très visibles */
+.card{
+  border: 2px solid rgba(27,108,168,.35);
+  background: #ffffff;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+}
+
+/* D) Sections plus marquées */
+.section, .content{
+  background: #ffffff;
+  border: 2px solid rgba(224,219,207,.9);
+}
+
+/* E) Bouton primaire plus contrasté */
+.btn-primary{
+  background: linear-gradient(135deg,#1b6ca8,#082f49);
+}
+
