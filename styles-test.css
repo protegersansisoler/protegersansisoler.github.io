@@ -430,3 +430,87 @@ footer p{
   border:0;
 }
 
+/* ===== PATCH TEST – raffinement visuel (colle en fin de styles-test.css) ===== */
+
+/* 1) Un peu plus de netteté globale */
+:root{
+  --shadow: 0 16px 42px rgba(16,42,67,.10);
+  --shadow2: 0 10px 22px rgba(16,42,67,.08);
+}
+
+/* 2) Lisibilité: largeur de ligne + titres plus “design” */
+.content, .section, .hero{
+  background: rgba(255,255,255,.97);
+}
+
+.section p, .content p, .hero p, .hero .lead{
+  max-width: 74ch;
+}
+
+h1,h2,h3{
+  letter-spacing: -0.02em;
+}
+
+/* 3) Header un peu plus premium */
+header{
+  background: rgba(251,250,247,.86);
+  border-bottom: 1px solid rgba(224,219,207,.85);
+}
+
+.brand{
+  border-color: rgba(224,219,207,.85);
+  box-shadow: 0 10px 20px rgba(16,42,67,.05);
+}
+
+/* 4) Menu: rendu plus “pill” et stable */
+.menu a{
+  border-color: rgba(224,219,207,.0);
+}
+.menu a:hover{
+  transform: translateY(0); /* moins “jump” */
+}
+
+/* 5) Cartes: hover plus doux + plus moderne */
+.card{
+  box-shadow: none;
+  background: linear-gradient(180deg, #fff, rgba(255,255,255,.96));
+}
+
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow2);
+  border-color: rgba(27,108,168,.18);
+}
+
+/* 6) Boutons: un peu plus “cliquables” */
+.btn{
+  box-shadow: none;
+  border-color: rgba(16,42,67,.10);
+}
+
+.btn:hover{
+  box-shadow: 0 12px 24px rgba(16,42,67,.10);
+}
+
+.btn-primary{
+  box-shadow: 0 12px 26px rgba(27,108,168,.18);
+}
+.btn-primary:hover{
+  box-shadow: 0 16px 34px rgba(27,108,168,.22);
+}
+
+/* 7) Section / content: padding un peu plus généreux */
+.section, .content{
+  padding: 20px;
+  box-shadow: none;
+}
+
+/* 8) Grille: respirer un peu plus */
+.grid{
+  gap: 16px;
+}
+
+/* 9) Footer: plus léger */
+footer{
+  background: linear-gradient(180deg, rgba(244,241,234,.9), rgba(239,233,221,.9));
+}
