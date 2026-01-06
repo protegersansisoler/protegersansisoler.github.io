@@ -559,4 +559,9 @@ footer{
   background: linear-gradient(135deg,#1b6ca8,#082f49);
 }
 
+/* Header : on retire complètement le bloc "brand" */
+header .brand{ 
+  display:none !important;
+}
+
 
