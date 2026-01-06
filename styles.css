@@ -85,16 +85,7 @@ header{
   padding:16px 0 14px;
 }
 
-/* Variante "row" : logo à gauche, menu à droite */
-.nav.nav-row{
-  flex-direction:row;
-  justify-content:space-between;
-  align-items:center;
-  gap:14px;
-  padding:14px 0;
-}
-
-/* Séparateur discret (uniquement en colonne) */
+/* Séparateur discret */
 .nav::after{
   content:"";
   display:block;
@@ -108,7 +99,6 @@ header{
   );
   margin-top:8px;
 }
-.nav.nav-row::after{ display:none; }
 
 /* =========================
    BRAND (badge discret)
@@ -123,23 +113,11 @@ header{
   border:1px solid rgba(224,219,207,.9);
   background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(244,241,234,.55));
   box-shadow:0 6px 14px rgba(16,42,67,.06);
-  text-decoration:none;
-  color:inherit;
-}
-
-/* Si tu utilises la version texte-only, on enlève l'effet badge */
-.brand.brand-text-only{
-  padding:0;
-  border:none;
-  background:transparent;
-  box-shadow:none;
-  border-radius:0;
-  gap:0;
 }
 
 .brand-logo{
-  width:36px;
-  height:36px;
+  width:40px;
+  height:40px;
   border-radius:14px;
   box-shadow:var(--shadow2);
   display:block;
@@ -163,8 +141,8 @@ header{
 
 .brand-accent{ color:var(--accent2); }
 
-/* ✅ CORRECTION : on ne cible PLUS tous les spans */
-.brand-tagline{
+.brand-tagline,
+.brand-text span{
   display:block;
   margin-top:2px;
   color:var(--muted);
@@ -180,20 +158,12 @@ header{
    MENU
    ========================= */
 
-/* ✅ Correction principale : menu en grid contrôlée
-   => évite qu’un item ("À propos") tombe seul sur une 2e ligne */
 .menu{
-  display:grid;
-  grid-auto-flow:column;
-  grid-auto-columns:max-content;
+  display:flex;
   gap:10px;
+  flex-wrap:wrap;
   align-items:center;
   justify-content:center;
-}
-
-/* En nav-row, le menu se pousse à droite */
-.nav.nav-row .menu{
-  justify-content:end;
 }
 
 .menu a{
@@ -207,7 +177,6 @@ header{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  white-space:nowrap; /* crucial */
   transition:background .15s ease,border-color .15s ease,transform .15s ease;
 }
 
@@ -222,27 +191,6 @@ header{
   background:var(--menu-current);
   border-color:rgba(27,108,168,.26);
   font-weight:750;
-}
-
-/* Responsive menu : 2 rangées propres sur tablette */
-@media (max-width:1050px){
-  .menu{
-    grid-auto-flow:row;
-    grid-template-columns:repeat(4, max-content);
-    justify-content:center;
-  }
-}
-
-/* Mobile : 2 colonnes pleine largeur */
-@media (max-width:720px){
-  .menu{
-    grid-template-columns:repeat(2, 1fr);
-    width:100%;
-  }
-  .menu a{
-    width:100%;
-    padding:10px 12px;
-  }
 }
 
 /* MAIN */
@@ -354,17 +302,14 @@ main{ padding:28px 0 46px; }
 /* Listes : harmonisation globale */
 .list{
   margin:10px 0 0;
-  padding-left:1.1rem;
+  padding-left:18px;
 }
 .list li{
-  margin:6px 0;
+  margin:8px 0;
   color:var(--muted);
 }
 .list li strong{
   color:var(--text);
-}
-.list li::marker{
-  color:rgba(27,108,168,.75);
 }
 
 /* Notice */
@@ -445,13 +390,28 @@ footer p{
   font-size:.95rem;
 }
 
-/* Responsive grille */
+/* Listes (utilisées dans les fiches et parcours) */
+.list{
+  margin:10px 0 0;
+  padding-left:1.1rem;
+}
+.list li{
+  margin:6px 0;
+}
+.list li::marker{
+  color:rgba(27,108,168,.75);
+}
+
+/* Responsive */
 @media (max-width:980px){
   .grid{ grid-template-columns:repeat(2,1fr); }
 }
+
 @media (max-width:720px){
   .grid{ grid-template-columns:1fr; }
   .hero h1{ font-size:1.7rem; }
+  .menu{ gap:8px; }
+  .menu a{ padding:10px 12px; }
 }
 
 /* Mouvement réduit */
@@ -469,3 +429,134 @@ footer p{
   white-space:nowrap;
   border:0;
 }
+
+/* ===== PATCH TEST – raffinement visuel (colle en fin de styles-test.css) ===== */
+
+/* 1) Un peu plus de netteté globale */
+:root{
+  --shadow: 0 16px 42px rgba(16,42,67,.10);
+  --shadow2: 0 10px 22px rgba(16,42,67,.08);
+}
+
+/* 2) Lisibilité: largeur de ligne + titres plus “design” */
+.content, .section, .hero{
+  background: rgba(255,255,255,.97);
+}
+
+.section p, .content p, .hero p, .hero .lead{
+  max-width: 74ch;
+}
+
+h1,h2,h3{
+  letter-spacing: -0.02em;
+}
+
+/* 3) Header un peu plus premium */
+header{
+  background: rgba(251,250,247,.86);
+  border-bottom: 1px solid rgba(224,219,207,.85);
+}
+
+.brand{
+  border-color: rgba(224,219,207,.85);
+  box-shadow: 0 10px 20px rgba(16,42,67,.05);
+}
+
+/* 4) Menu: rendu plus “pill” et stable */
+.menu a{
+  border-color: rgba(224,219,207,.0);
+}
+.menu a:hover{
+  transform: translateY(0); /* moins “jump” */
+}
+
+/* 5) Cartes: hover plus doux + plus moderne */
+.card{
+  box-shadow: none;
+  background: linear-gradient(180deg, #fff, rgba(255,255,255,.96));
+}
+
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow2);
+  border-color: rgba(27,108,168,.18);
+}
+
+/* 6) Boutons: un peu plus “cliquables” */
+.btn{
+  box-shadow: none;
+  border-color: rgba(16,42,67,.10);
+}
+
+.btn:hover{
+  box-shadow: 0 12px 24px rgba(16,42,67,.10);
+}
+
+.btn-primary{
+  box-shadow: 0 12px 26px rgba(27,108,168,.18);
+}
+.btn-primary:hover{
+  box-shadow: 0 16px 34px rgba(27,108,168,.22);
+}
+
+/* 7) Section / content: padding un peu plus généreux */
+.section, .content{
+  padding: 20px;
+  box-shadow: none;
+}
+
+/* 8) Grille: respirer un peu plus */
+.grid{
+  gap: 16px;
+}
+
+/* 9) Footer: plus léger */
+footer{
+  background: linear-gradient(180deg, rgba(244,241,234,.9), rgba(239,233,221,.9));
+}
+
+/* ===== TEST VISUEL FORT – à supprimer après test ===== */
+
+/* A) Mise en page plus compacte et lisible */
+:root{
+  --max: 960px;          /* page plus étroite = lecture plus confortable */
+}
+
+/* B) Hiérarchie visuelle plus nette */
+.hero{
+  padding: 36px;
+  background:
+    radial-gradient(900px 360px at 8% 0%, rgba(255,255,255,1), rgba(255,255,255,0) 60%),
+    linear-gradient(180deg,#ffffff,#f7f4ee);
+}
+
+.hero h1{
+  font-size: 2.3rem;
+}
+
+.hero .lead{
+  font-size: 1.18rem;
+}
+
+/* C) Cartes très visibles */
+.card{
+  border: 2px solid rgba(27,108,168,.35);
+  background: #ffffff;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+}
+
+/* D) Sections plus marquées */
+.section, .content{
+  background: #ffffff;
+  border: 2px solid rgba(224,219,207,.9);
+}
+
+/* E) Bouton primaire plus contrasté */
+.btn-primary{
+  background: linear-gradient(135deg,#1b6ca8,#082f49);
+}
+
+
