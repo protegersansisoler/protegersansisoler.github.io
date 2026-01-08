@@ -1,6 +1,6 @@
 // include.js
 // Change seulement SITE_VERSION quand tu veux forcer un refresh global (CSS/JS/includes)
-const SITE_VERSION = "6";
+const SITE_VERSION = "7";
 
 async function inject(id, file) {
   const el = document.getElementById(id);
