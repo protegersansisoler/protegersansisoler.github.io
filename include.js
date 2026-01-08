@@ -1,13 +1,25 @@
 // include.js
-// Change seulement SITE_VERSION quand tu veux forcer un refresh global (CSS/JS/includes)
-const SITE_VERSION = "7";
+// La version est lue depuis /site-version.txt (no-store).
+// Pour forcer un refresh global, change seulement le contenu de site-version.txt.
 
-async function inject(id, file) {
+async function getSiteVersion() {
+  try {
+    const res = await fetch("/site-version.txt", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const txt = (await res.text()).trim();
+    return txt || "0";
+  } catch (e) {
+    console.warn("[include.js] Impossible de lire /site-version.txt, fallback v=0", e);
+    return "0";
+  }
+}
+
+async function inject(id, file, version) {
   const el = document.getElementById(id);
   if (!el) return;
 
   const sep = file.includes("?") ? "&" : "?";
-  const url = `${file}${sep}v=${encodeURIComponent(SITE_VERSION)}`;
+  const url = `${file}${sep}v=${encodeURIComponent(version)}`;
 
   try {
     const res = await fetch(url, { cache: "no-store" });
@@ -37,20 +49,17 @@ function markActiveLink() {
   });
 }
 
-// Ajoute ou remplace v=... dans une URL (sans perdre le #hash)
-function setVersionParam(url) {
+function setVersionParam(url, version) {
   const [beforeHash, hash] = url.split("#");
   const [base, query = ""] = beforeHash.split("?");
 
   const params = new URLSearchParams(query);
-  params.set("v", SITE_VERSION);
+  params.set("v", version);
 
-  const newUrl = `${base}?${params.toString()}` + (hash ? `#${hash}` : "");
-  return newUrl;
+  return `${base}?${params.toString()}` + (hash ? `#${hash}` : "");
 }
 
-// Ajoute/replace ?v=... sur tes assets locaux (CSS/JS), sans toucher aux liens externes
-function bustLocalAssets() {
+function bustLocalAssets(version) {
   const isLocal = (url) =>
     url &&
     !url.startsWith("http://") &&
@@ -59,34 +68,42 @@ function bustLocalAssets() {
     !url.startsWith("data:") &&
     !url.startsWith("mailto:");
 
-  // CSS
+  // CSS : forcer un vrai reload en remplaçant le <link>
   document.querySelectorAll('link[rel="stylesheet"][href]').forEach(link => {
     const href = link.getAttribute("href");
     if (!isLocal(href)) return;
-    link.setAttribute("href", setVersionParam(href));
+
+    const newHref = setVersionParam(href, version);
+    const clone = link.cloneNode(true);
+    clone.setAttribute("href", newHref);
+
+    // insère le nouveau, puis retire l’ancien (force le rechargement)
+    link.parentNode.insertBefore(clone, link.nextSibling);
+    link.remove();
   });
 
-  // JS
+  // JS : ajouter v=... aux scripts locaux (sauf include.js)
   document.querySelectorAll("script[src]").forEach(s => {
     const src = s.getAttribute("src");
     if (!isLocal(src)) return;
 
-    // Ne pas se recharger soi-même
     const base0 = src.split("#")[0].split("?")[0];
     if (base0.endsWith("/include.js") || base0.endsWith("include.js")) return;
 
-    s.setAttribute("src", setVersionParam(src));
+    s.setAttribute("src", setVersionParam(src, version));
   });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // 1) Force refresh des assets (CSS/JS) via ?v=SITE_VERSION
-  bustLocalAssets();
+  const version = await getSiteVersion();
 
-  // 2) Injection header/footer
-  await inject("site-header", "/header.html");
-  await inject("site-footer", "/footer.html");
+  // 1) Force refresh des assets (CSS/JS) via ?v=version
+  bustLocalAssets(version);
 
-  // 3) Actif dans le menu (menu est dans header.html)
+  // 2) Injection header/footer (eux aussi versionnés + no-store)
+  await inject("site-header", "/header.html", version);
+  await inject("site-footer", "/footer.html", version);
+
+  // 3) Actif dans le menu
   markActiveLink();
 });
