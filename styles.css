@@ -345,7 +345,7 @@ main{ padding:28px 0 46px; }
 .content p{
   margin:0 0 10px;
   color:var(--muted);
-  max-width:none; /* ✅ pleine largeur dans les blocs 2-3 */
+  max-width:none;
 }
 .section p:last-child,
 .content p:last-child{ margin-bottom:0; }
@@ -397,6 +397,65 @@ footer p{
   font-size:.95rem;
 }
 
+/* =========================
+   Bonifications ciblées – index
+   ========================= */
+
+/* Phrase signature dans le hero */
+.hero .eyebrow{
+  display:inline-block;
+  margin:0 0 10px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(27,108,168,.08);
+  color:var(--accent2);
+  font-size:.92rem;
+  font-weight:800;
+  letter-spacing:.01em;
+  border:1px solid rgba(27,108,168,.14);
+}
+
+/* Hero un peu plus respirable */
+.hero{
+  padding:32px;
+}
+
+.hero .lead{
+  font-size:1.16rem;
+  line-height:1.65;
+}
+
+/* Sections d’introduction plus aérées */
+.content.intro p,
+.content.start-here p{
+  max-width:78ch;
+}
+
+/* Cartes du bloc “Vous pouvez commencer ici” */
+.start-grid .card{
+  min-height:100%;
+}
+
+.start-grid .card h3{
+  font-size:1.1rem;
+}
+
+.start-grid .card p{
+  margin-bottom:12px;
+}
+
+/* Dernier bloc d’orientation */
+.cta-soft{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(244,241,234,.92));
+  border:1px solid rgba(27,108,168,.14);
+}
+
+/* Espacement légèrement meilleur sur l’index */
+main > section + section{
+  margin-top:20px;
+}
+
 /* Responsive */
 @media (max-width:980px){
   .grid{ grid-template-columns:repeat(2,1fr); }
@@ -407,6 +466,18 @@ footer p{
   .hero h1{ font-size:1.7rem; }
   .menu{ gap:8px; }
   .menu a{ padding:10px 12px; }
+
+  .hero{
+    padding:24px;
+  }
+
+  .hero .lead{
+    font-size:1.08rem;
+  }
+
+  .hero .eyebrow{
+    font-size:.88rem;
+  }
 }
 
 /* Mouvement réduit */
@@ -425,7 +496,7 @@ footer p{
   border:0;
 }
 
-/* ✅ Tu veux enlever le logo dans le header */
+/* Tu veux enlever le logo dans le header */
 header .brand{
   display:none !important;
 }
