@@ -136,6 +136,32 @@ footer.site p+p{margin-top:.6rem}
 @media (max-width:460px){.offre{grid-template-columns:minmax(0,1fr)}.offre img,.offre .citation{width:6rem}}
 @media (prefers-reduced-motion:no-preference){.questions button,.bouton{transition:all .15s}}
 
+.u-court{display:none}
+.menu-btn{display:none}
+@media (max-width:760px){
+  .urgence{padding-block:.45rem;font-size:.88rem}
+  .urgence .col{flex-wrap:nowrap;justify-content:space-between;gap:.8rem}
+  .u-811,.u-long{display:none}
+  .u-court{display:inline}
+  .urgence a{margin-left:auto;white-space:nowrap}
+  header.site{padding-block:.7rem}
+  header.site .col{flex-wrap:nowrap;gap:.8rem}
+  .marque span{font-size:1.2rem}
+  .js .menu-btn{display:inline-flex;align-items:center;gap:.5rem;font:inherit;font-weight:700;font-size:.95rem;color:var(--marine);background:var(--papier);border:1.5px solid var(--marine);border-radius:.6rem;padding:.5rem .8rem;min-height:44px;cursor:pointer;flex:none}
+  .menu-btn .barres,.menu-btn .barres::before,.menu-btn .barres::after{display:block;width:1.1rem;height:2px;background:currentColor;border-radius:2px;position:relative}
+  .menu-btn .barres::before,.menu-btn .barres::after{content:"";position:absolute;left:0}
+  .menu-btn .barres::before{top:-6px}.menu-btn .barres::after{top:6px}
+  .menu-btn[aria-expanded="true"] .barres{background:transparent}
+  .menu-btn[aria-expanded="true"] .barres::before{top:0;transform:rotate(45deg)}
+  .menu-btn[aria-expanded="true"] .barres::after{top:0;transform:rotate(-45deg)}
+  header.site{position:relative}
+  .js nav.principal{display:none;position:absolute;left:0;right:0;top:100%;z-index:50;background:var(--papier);border-bottom:1px solid var(--trait);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+  .js nav.principal.ouvert{display:block}
+  .js nav.principal ul{flex-direction:column;gap:0;padding:.3rem 16px .8rem;font-size:1.05rem}
+  .js nav.principal li a{display:block;padding:.8rem 0;border-bottom:1px solid var(--trait)}
+  .js nav.principal li:last-child a{border-bottom:0}
+  .js nav.principal a[aria-current]{border-color:var(--trait);color:var(--sauge)}
+}
 .urgence a{margin-left:auto}
 .page-tete{padding-block:3rem 2rem;background:radial-gradient(110% 90% at 90% 0,var(--sauge-pale) 0,transparent 60%),var(--fond)}
 .page-tete h1{font-family:var(--affiche);font-weight:600;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.02em;color:var(--marine);margin-top:.6rem}
