@@ -136,6 +136,9 @@ footer.site p+p{margin-top:.6rem}
 @media (max-width:460px){.offre{grid-template-columns:minmax(0,1fr)}.offre img,.offre .citation{width:6rem}}
 @media (prefers-reduced-motion:no-preference){.questions button,.bouton{transition:all .15s}}
 
+.avis-approbation{background:var(--sauge-pale);padding-block:.9rem;border-bottom:1px solid var(--trait)}
+.avis-approbation p{max-width:48rem}
+.bouton.attente{opacity:.65;cursor:default;pointer-events:none}
 .u-court{display:none}
 .menu-btn{display:none}
 @media (max-width:760px){
